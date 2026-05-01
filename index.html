@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TWO.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-container">
+        <header class="header">
+            <h1>TWO.</h1>
+            <div class="score-display">Score: <span id="score">0</span></div>
+        </header>
+        
+        <div class="card-container">
+            <div id="card" class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h2 id="word-display" class="word">...</h2>
+                    </div>
+                    <div class="card-back">
+                        <h2 id="word-result" class="word-small"></h2>
+                        <div id="result-status" class="status-badge"></div>
+                        <p id="definition" class="definition"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls front-controls" id="guessing-controls">
+            <button id="btn-fake" class="btn btn-secondary">Fake</button>
+            <button id="btn-real" class="btn btn-primary">Real</button>
+        </div>
+        <div class="controls back-controls hidden" id="next-controls">
+            <button id="btn-next" class="btn btn-primary btn-full">Next Word</button>
+        </div>
+
+        <div id="missed-words-container" class="missed-words hidden">
+            <h3>Missed Real Words</h3>
+            <p id="missed-words-list"></p>
+        </div>
+    </main>
+    <script src="words.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
