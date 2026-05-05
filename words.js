@@ -125,8 +125,14 @@ const scrabbleWords = [
 ];
 
 const fakeWords = [
-    "QA", "ZI", "VU", "FI", "RO", "CA", "RA", "PU", "KE", "FO", 
-    "LU", "JE", "CU", "VA", "WI", "ZO", "JI", "QU", "YI", "AJ",
-    "EC", "IB", "OV", "UX", "YI", "ZI", "OJ", "IK", "EP", "UK",
-    "VO", "WA", "WU", "XY", "YI", "ZE", "ZU", "JI", "JU", "QA"
+    "RA", "CA", "GA", "SA", "VA", "WA", "QA", "XA", 
+    "CE", "GE", "JE", "KE", "LE", "QE", "SE", "VE", "XE", "ZE",
+    "CI", "FI", "JI", "NI", "RI", "VI", "WI", "ZI", "YI",
+    "CO", "FO", "QO", "RO", "VO", "XO", "ZO",
+    "BU", "CU", "DU", "FU", "HU", "JU", "KU", "LU", "PU", "QU", "RU", "SU", "TU", "VU", "WU", "YU", "ZU",
+    "AC", "AF", "AK", "AP", "AQ", "AV", "AZ",
+    "EB", "EC", "EG", "EK", "EP", "EQ", "EV", "EZ",
+    "IB", "IC", "IG", "IK", "IL", "IM", "IP", "IQ", "IR", "IV", "IX", "IZ",
+    "OC", "OG", "OL", "OQ", "OT", "OV", "OZ",
+    "UB", "UC", "UD", "UF", "UG", "UK", "UL", "UQ", "UV", "UX", "UZ"
 ];

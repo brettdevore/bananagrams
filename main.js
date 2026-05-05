@@ -1,4 +1,4 @@
-const WORD_RATIO_REAL = 0.7; // 70% chance to show a real word
+const WORD_RATIO_REAL = 0.5; // 50% chance to show a real word
 
 let score = 0;
 let currentWord = null;
