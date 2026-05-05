@@ -6,8 +6,8 @@
     --accent: #242422;
     --accent-hover: #1a1a18;
     --border-color: #e5e5e0;
-    --success: #4a5c50; /* Muted green */
-    --error: #8b5a5a; /* Muted red */
+    --success: #28a745; /* Standard bright green */
+    --error: #dc3545; /* Standard bright red */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -157,13 +157,13 @@ body {
 }
 
 .status-correct {
-    background-color: #eaf1eb;
+    background-color: #e6f4ea;
     color: var(--success);
     animation: color-shift-correct 0.7s ease-out 0.2s both;
 }
 
 .status-incorrect {
-    background-color: #f7e9e9;
+    background-color: #fce8e6;
     color: var(--error);
     animation: color-shift-incorrect 0.7s ease-out 0.2s both;
 }
@@ -171,13 +171,13 @@ body {
 @keyframes color-shift-correct {
     0% { background-color: #f4f4f0; color: var(--text-muted); opacity: 0; }
     20% { background-color: #f4f4f0; color: var(--text-muted); opacity: 1; }
-    100% { background-color: #eaf1eb; color: var(--success); opacity: 1; }
+    100% { background-color: #e6f4ea; color: var(--success); opacity: 1; }
 }
 
 @keyframes color-shift-incorrect {
     0% { background-color: #f4f4f0; color: var(--text-muted); opacity: 0; }
     20% { background-color: #f4f4f0; color: var(--text-muted); opacity: 1; }
-    100% { background-color: #f7e9e9; color: var(--error); opacity: 1; }
+    100% { background-color: #fce8e6; color: var(--error); opacity: 1; }
 }
 
 .definition {
