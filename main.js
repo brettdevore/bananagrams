@@ -1,9 +1,9 @@
 const WORD_RATIO_REAL = 0.5; // 50% chance to show a real word
 
-let score = 0;
+let score = parseInt(localStorage.getItem('streak')) || 0;
 let currentWord = null;
 let isReal = false;
-let missedWords = new Set();
+let missedWords = JSON.parse(localStorage.getItem('missedWords')) || {};
 
 const elements = {
     score: document.getElementById('score'),
@@ -47,17 +47,33 @@ function setupNextWord() {
     }
 }
 
+function updateMissedWordsUI() {
+    const words = Object.keys(missedWords);
+    if (words.length > 0) {
+        elements.missedWordsContainer.classList.remove('hidden');
+        const displayArray = words.map(w => {
+            const count = missedWords[w];
+            return count > 1 ? `${w} x${count}` : w;
+        });
+        elements.missedWordsList.textContent = displayArray.join(', ');
+    } else {
+        elements.missedWordsContainer.classList.add('hidden');
+    }
+}
+
 function handleGuess(userGuessedReal) {
     const isCorrect = userGuessedReal === isReal;
     
     if (isCorrect) {
         score++;
+        localStorage.setItem('streak', score);
         elements.score.textContent = score;
         elements.resultStatus.textContent = "Correct";
         elements.resultStatus.className = "status-badge status-correct";
         elements.card.classList.add('is-correct');
     } else {
         score = 0; // Reset score on mistake
+        localStorage.setItem('streak', score);
         elements.score.textContent = score;
         elements.resultStatus.textContent = "Incorrect";
         elements.resultStatus.className = "status-badge status-incorrect";
@@ -65,9 +81,9 @@ function handleGuess(userGuessedReal) {
         
         // Track if it was a real word but user guessed fake
         if (isReal && !userGuessedReal) {
-            missedWords.add(currentWord.word);
-            elements.missedWordsContainer.classList.remove('hidden');
-            elements.missedWordsList.textContent = Array.from(missedWords).join(', ');
+            missedWords[currentWord.word] = (missedWords[currentWord.word] || 0) + 1;
+            localStorage.setItem('missedWords', JSON.stringify(missedWords));
+            updateMissedWordsUI();
         }
     }
 
@@ -84,4 +100,6 @@ elements.btnFake.addEventListener('click', () => handleGuess(false));
 elements.btnNext.addEventListener('click', setupNextWord);
 
 // Initialize
+elements.score.textContent = score;
+updateMissedWordsUI();
 setupNextWord();
