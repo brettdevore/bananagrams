@@ -119,6 +119,18 @@ body {
     transform: rotateY(180deg);
 }
 
+.card.is-correct .card-back {
+    border: 3px solid var(--success);
+    padding: 30px;
+    box-shadow: inset 0 0 20px rgba(74, 92, 80, 0.05);
+}
+
+.card.is-incorrect .card-back {
+    border: 3px solid var(--error);
+    padding: 30px;
+    box-shadow: inset 0 0 20px rgba(139, 90, 90, 0.05);
+}
+
 .word {
     font-size: 5rem;
     font-weight: 400;

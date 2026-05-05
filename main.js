@@ -30,7 +30,7 @@ function getRandomFakeWord() {
 }
 
 function setupNextWord() {
-    elements.card.classList.remove('is-flipped');
+    elements.card.classList.remove('is-flipped', 'is-correct', 'is-incorrect');
     elements.guessingControls.classList.remove('hidden');
     elements.nextControls.classList.add('hidden');
     elements.resultStatus.className = "status-badge";
@@ -55,11 +55,13 @@ function handleGuess(userGuessedReal) {
         elements.score.textContent = score;
         elements.resultStatus.textContent = "Correct";
         elements.resultStatus.className = "status-badge status-correct";
+        elements.card.classList.add('is-correct');
     } else {
         score = 0; // Reset score on mistake
         elements.score.textContent = score;
         elements.resultStatus.textContent = "Incorrect";
         elements.resultStatus.className = "status-badge status-incorrect";
+        elements.card.classList.add('is-incorrect');
         
         // Track if it was a real word but user guessed fake
         if (isReal && !userGuessedReal) {
