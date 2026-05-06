@@ -1,12 +1,15 @@
 const WORD_RATIO_REAL = 0.5; // 50% chance to show a real word
 
 let score = parseInt(localStorage.getItem('streak')) || 0;
+let bestScore = parseInt(localStorage.getItem('bestStreak')) || 0;
 let currentWord = null;
 let isReal = false;
 let missedWords = JSON.parse(localStorage.getItem('missedWords')) || {};
 
 const elements = {
     score: document.getElementById('score'),
+    bestScoreDisplay: document.getElementById('best-score'),
+    btnClear: document.getElementById('btn-clear'),
     card: document.getElementById('card'),
     wordDisplay: document.getElementById('word-display'),
     wordResult: document.getElementById('word-result'),
@@ -67,6 +70,11 @@ function handleGuess(userGuessedReal) {
     if (isCorrect) {
         score++;
         localStorage.setItem('streak', score);
+        if (score > bestScore) {
+            bestScore = score;
+            localStorage.setItem('bestStreak', bestScore);
+            elements.bestScoreDisplay.textContent = bestScore;
+        }
         elements.score.textContent = score;
         elements.resultStatus.textContent = "Correct";
         elements.resultStatus.className = "status-badge status-correct";
@@ -97,7 +105,23 @@ elements.btnReal.addEventListener('click', () => handleGuess(true));
 elements.btnFake.addEventListener('click', () => handleGuess(false));
 elements.btnNext.addEventListener('click', setupNextWord);
 
+elements.btnClear.addEventListener('click', () => {
+    if (confirm("Are you sure you want to clear your streak and missed words?")) {
+        score = 0;
+        bestScore = 0;
+        missedWords = {};
+        localStorage.removeItem('streak');
+        localStorage.removeItem('bestStreak');
+        localStorage.removeItem('missedWords');
+        elements.score.textContent = score;
+        elements.bestScoreDisplay.textContent = bestScore;
+        updateMissedWordsUI();
+        setupNextWord();
+    }
+});
+
 // Initialize
 elements.score.textContent = score;
+elements.bestScoreDisplay.textContent = bestScore;
 updateMissedWordsUI();
 setupNextWord();

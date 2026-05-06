@@ -13,7 +13,10 @@
     <main class="app-container">
         <header class="header">
             <h1>TWO.</h1>
-            <div class="score-display">Streak: <span id="score">0</span></div>
+            <div style="text-align: right;">
+                <div class="score-display">Streak: <span id="score">0</span></div>
+                <div class="score-display" style="font-size: 0.75rem; margin-top: 4px;">Best: <span id="best-score">0</span></div>
+            </div>
         </header>
         
         <div class="card-container">
@@ -43,6 +46,7 @@
             <h3>Missed Words</h3>
             <p id="missed-words-list"></p>
         </div>
+        <button id="btn-clear" class="btn btn-secondary" style="margin-top: 24px; padding: 12px; font-size: 0.875rem;">Clear Progress</button>
     </main>
     <script src="words.js"></script>
     <script src="main.js"></script>
