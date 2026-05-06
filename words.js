@@ -1,4 +1,4 @@
-const scrabbleWords = [
+const baseNWLWords = [
     { word: "AA", def: "rough, cindery lava" },
     { word: "AB", def: "an abdominal muscle" },
     { word: "AD", def: "an advertisement" },
@@ -108,16 +108,38 @@ const scrabbleWords = [
     { word: "ZA", def: "a pizza" }
 ];
 
-const fakeWords = [
-    "CH", "DI", "EA", "EE", "FY", "GU", "IO", "JA", "KO", "KY", "NY", "OB", "OO", "OU", "ST", "UR",
+const cswOnlyWords = [
+    { word: "CH", def: "an English dialect word for I" },
+    { word: "DI", def: "a plural of deus (god)" },
+    { word: "EA", def: "a river (dialect)" },
+    { word: "EE", def: "an eye (Scots)" },
+    { word: "FY", def: "an interjection expressing disgust" },
+    { word: "GU", def: "a simple violin used in Shetland" },
+    { word: "IO", def: "a moth with a large spot on each hind wing" },
+    { word: "JA", def: "yes" },
+    { word: "KO", def: "a Maori digging implement" },
+    { word: "KY", def: "cows (Scots)" },
+    { word: "NY", def: "to approach (Scots)" },
+    { word: "OB", def: "an objection" },
+    { word: "OO", def: "wool (Scots)" },
+    { word: "OU", def: "a man, a bloke (South African)" },
+    { word: "ST", def: "used to attract attention or urge silence" },
+    { word: "UG", def: "to arouse disgust in" },
+    { word: "UR", def: "expressing hesitation" },
+    { word: "YU", def: "a precious jade" },
+    { word: "ZE", def: "a gender-neutral pronoun" },
+    { word: "ZO", def: "a Tibetan yak" }
+];
+
+const baseFakeWords = [
     "RA", "CA", "GA", "SA", "VA", "WA", "QA", "XA", 
-    "CE", "GE", "JE", "KE", "LE", "QE", "SE", "VE", "XE", "ZE",
+    "CE", "GE", "JE", "KE", "LE", "QE", "SE", "VE", "XE",
     "CI", "FI", "JI", "NI", "RI", "VI", "WI", "ZI", "YI",
-    "CO", "FO", "QO", "RO", "VO", "XO", "ZO",
-    "BU", "CU", "DU", "FU", "HU", "JU", "KU", "LU", "PU", "QU", "RU", "SU", "TU", "VU", "WU", "YU", "ZU",
+    "CO", "FO", "QO", "RO", "VO", "XO",
+    "BU", "CU", "DU", "FU", "HU", "JU", "KU", "LU", "PU", "QU", "RU", "SU", "TU", "VU", "WU", "ZU",
     "AC", "AF", "AK", "AP", "AQ", "AV", "AZ",
     "EB", "EC", "EG", "EK", "EP", "EQ", "EV", "EZ",
     "IB", "IC", "IG", "IK", "IL", "IM", "IP", "IQ", "IR", "IV", "IX", "IZ",
     "OC", "OG", "OL", "OQ", "OT", "OV", "OZ",
-    "UB", "UC", "UD", "UF", "UG", "UK", "UL", "UQ", "UV", "UX", "UZ"
+    "UB", "UC", "UD", "UF", "UK", "UL", "UQ", "UV", "UX", "UZ"
 ];

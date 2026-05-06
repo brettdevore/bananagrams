@@ -1,5 +1,20 @@
 const WORD_RATIO_REAL = 0.5; // 50% chance to show a real word
 
+let scrabbleWords = [];
+let fakeWords = [];
+let dictionary = localStorage.getItem('dictionary') || 'NWL';
+
+function buildWordPools() {
+    if (dictionary === 'CSW') {
+        scrabbleWords = [...baseNWLWords, ...cswOnlyWords];
+        fakeWords = [...baseFakeWords];
+    } else {
+        scrabbleWords = [...baseNWLWords];
+        fakeWords = [...baseFakeWords, ...cswOnlyWords.map(w => w.word)];
+    }
+}
+buildWordPools();
+
 let score = parseInt(localStorage.getItem('streak')) || 0;
 let bestScore = parseInt(localStorage.getItem('bestStreak')) || 0;
 let currentWord = null;
@@ -17,6 +32,7 @@ const elements = {
     score: document.getElementById('score'),
     bestScoreDisplay: document.getElementById('best-score'),
     btnClear: document.getElementById('btn-clear'),
+    dictionarySelect: document.getElementById('dictionary-select'),
     card: document.getElementById('card'),
     wordDisplay: document.getElementById('word-display'),
     wordResult: document.getElementById('word-result'),
@@ -137,6 +153,14 @@ function renderSettingsGrid() {
 elements.btnReal.addEventListener('click', () => handleGuess(true));
 elements.btnFake.addEventListener('click', () => handleGuess(false));
 elements.btnNext.addEventListener('click', setupNextWord);
+
+elements.dictionarySelect.value = dictionary;
+elements.dictionarySelect.addEventListener('change', (e) => {
+    dictionary = e.target.value;
+    localStorage.setItem('dictionary', dictionary);
+    buildWordPools();
+    renderSettingsGrid();
+});
 
 document.getElementById('btn-settings').addEventListener('click', () => {
     document.getElementById('settings-view').classList.remove('hidden');
