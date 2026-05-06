@@ -7,10 +7,10 @@ let isReal = false;
 let missedWords = JSON.parse(localStorage.getItem('missedWords')) || {};
 let excludedWords = JSON.parse(localStorage.getItem('excludedWords')) || [];
 
-if (excludedWords.length === 0 && !localStorage.getItem('excludedWordsInitialized')) {
-    excludedWords = ["IF", "DO", "OF", "TO", "IT", "IS", "AS", "AT", "BE", "BY", "GO", "HI", "ME", "MY", "NO", "ON", "OR", "SO", "UP", "US", "WE"];
+if (excludedWords.length === 0 && !localStorage.getItem('excludedWordsInitializedV2')) {
+    excludedWords = ["AB", "AD", "AH", "AN", "AS", "AT", "BE", "BY", "DO", "GO", "HA", "HI", "IF", "IN", "IS", "IT", "ME", "MY", "NO", "OF", "OH", "ON", "OR", "SO", "TO", "UP", "US", "WE", "YO"];
     localStorage.setItem('excludedWords', JSON.stringify(excludedWords));
-    localStorage.setItem('excludedWordsInitialized', "true");
+    localStorage.setItem('excludedWordsInitializedV2', "true");
 }
 
 const elements = {
