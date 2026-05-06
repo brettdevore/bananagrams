@@ -5,6 +5,13 @@ let bestScore = parseInt(localStorage.getItem('bestStreak')) || 0;
 let currentWord = null;
 let isReal = false;
 let missedWords = JSON.parse(localStorage.getItem('missedWords')) || {};
+let excludedWords = JSON.parse(localStorage.getItem('excludedWords')) || [];
+
+if (excludedWords.length === 0 && !localStorage.getItem('excludedWordsInitialized')) {
+    excludedWords = ["IF", "DO", "OF", "TO", "IT", "IS", "AS", "AT", "BE", "BY", "GO", "HI", "ME", "MY", "NO", "ON", "OR", "SO", "UP", "US", "WE"];
+    localStorage.setItem('excludedWords', JSON.stringify(excludedWords));
+    localStorage.setItem('excludedWordsInitialized', "true");
+}
 
 const elements = {
     score: document.getElementById('score'),
@@ -25,7 +32,9 @@ const elements = {
 };
 
 function getRandomRealWord() {
-    return scrabbleWords[Math.floor(Math.random() * scrabbleWords.length)];
+    const validWords = scrabbleWords.filter(w => !excludedWords.includes(w.word));
+    if (validWords.length === 0) return scrabbleWords[0];
+    return validWords[Math.floor(Math.random() * validWords.length)];
 }
 
 function getRandomFakeWord() {
@@ -101,12 +110,45 @@ function handleGuess(userGuessedReal) {
     elements.nextControls.classList.remove('hidden');
 }
 
+function renderSettingsGrid() {
+    const grid = document.getElementById('word-toggle-grid');
+    grid.innerHTML = '';
+    scrabbleWords.forEach(w => {
+        const btn = document.createElement('div');
+        btn.className = 'word-badge';
+        if (excludedWords.includes(w.word)) {
+            btn.classList.add('excluded');
+        }
+        btn.textContent = w.word;
+        btn.addEventListener('click', () => {
+            if (excludedWords.includes(w.word)) {
+                excludedWords = excludedWords.filter(ew => ew !== w.word);
+                btn.classList.remove('excluded');
+            } else {
+                excludedWords.push(w.word);
+                btn.classList.add('excluded');
+            }
+            localStorage.setItem('excludedWords', JSON.stringify(excludedWords));
+        });
+        grid.appendChild(btn);
+    });
+}
+
 elements.btnReal.addEventListener('click', () => handleGuess(true));
 elements.btnFake.addEventListener('click', () => handleGuess(false));
 elements.btnNext.addEventListener('click', setupNextWord);
 
+document.getElementById('btn-settings').addEventListener('click', () => {
+    document.getElementById('settings-view').classList.remove('hidden');
+    renderSettingsGrid();
+});
+
+document.getElementById('btn-close-settings').addEventListener('click', () => {
+    document.getElementById('settings-view').classList.add('hidden');
+});
+
 elements.btnClear.addEventListener('click', () => {
-    if (confirm("Are you sure you want to clear your streak and missed words?")) {
+    if (confirm("Are you sure you want to clear your streak and missed words? This will not affect your excluded words list.")) {
         score = 0;
         bestScore = 0;
         missedWords = {};
@@ -117,6 +159,7 @@ elements.btnClear.addEventListener('click', () => {
         elements.bestScoreDisplay.textContent = bestScore;
         updateMissedWordsUI();
         setupNextWord();
+        document.getElementById('settings-view').classList.add('hidden');
     }
 });
 
