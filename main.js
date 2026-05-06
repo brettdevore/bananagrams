@@ -79,12 +79,10 @@ function handleGuess(userGuessedReal) {
         elements.resultStatus.className = "status-badge status-incorrect";
         elements.card.classList.add('is-incorrect');
         
-        // Track if it was a real word but user guessed fake
-        if (isReal && !userGuessedReal) {
-            missedWords[currentWord.word] = (missedWords[currentWord.word] || 0) + 1;
-            localStorage.setItem('missedWords', JSON.stringify(missedWords));
-            updateMissedWordsUI();
-        }
+        // Track the missed word regardless of whether it's real or fake
+        missedWords[currentWord.word] = (missedWords[currentWord.word] || 0) + 1;
+        localStorage.setItem('missedWords', JSON.stringify(missedWords));
+        updateMissedWordsUI();
     }
 
     elements.wordResult.textContent = currentWord.word;
